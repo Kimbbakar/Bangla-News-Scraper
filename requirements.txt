@@ -6,3 +6,6 @@ psycopg2
 whitenoise 
 Unipath==1.0
 python-decouple==3
+bs4
+requests
+simplejson
