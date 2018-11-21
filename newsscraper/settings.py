@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'scrap'
 ]
 
 MIDDLEWARE = [
