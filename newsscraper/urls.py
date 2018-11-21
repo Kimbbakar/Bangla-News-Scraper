@@ -20,5 +20,6 @@ from scrap import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^scrap-url/', views.scrap,name = "scrap-url" ),
     url(r'^', views.home,name="home" ),
 ]
