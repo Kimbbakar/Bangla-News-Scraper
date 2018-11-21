@@ -1,0 +1,8 @@
+Django==1.11.6
+django-widget-tweaks==1.4.1
+dj-database-url==0.3.0
+gunicorn==19.6.0
+psycopg2 
+whitenoise 
+Unipath==1.0
+python-decouple==3

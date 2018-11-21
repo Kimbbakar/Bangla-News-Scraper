@@ -1,0 +1,1 @@
+web: gunicorn newsscraper.wsgi --log-file -
