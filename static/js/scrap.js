@@ -1,8 +1,5 @@
 $("#url_submit").on('submit',function(e){
-	e.preventDefault();     
-
-	alert($("#portal").val());
-	alert($("#url").val());
+	e.preventDefault();    
 
 	$.ajax({
 		url: $("#info").attr("href")  ,
