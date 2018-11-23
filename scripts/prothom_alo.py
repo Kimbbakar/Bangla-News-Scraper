@@ -8,6 +8,7 @@ import simplejson as json
 def news(url):
 
 	data = requests.get(url )
+	data.encoding = "utf-8"
 	soup = BeautifulSoup(data.text,'html.parser')
  
 	message = """
