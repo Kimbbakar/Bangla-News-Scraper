@@ -35,7 +35,7 @@ def postnews(request):
 			img	 		= request.POST['image'],
 			email	 	= request.POST['email']
 			)
-		new_news.save()
+		#new_news.save()
 
 		data ['message'] = "Thanks for your contribution!"
 
