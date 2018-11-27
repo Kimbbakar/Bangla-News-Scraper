@@ -40,6 +40,6 @@ def postnews(request):
 		data ['message'] = "Thanks for your contribution!"
 
 	else:
-		data ['message'] = "This news already in our server. We appreciate your contribution!"
+		data ['message'] = "This news already in our database. We appreciate your contribution!"
 
 	return JsonResponse(data)
