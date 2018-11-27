@@ -21,5 +21,6 @@ from scrap import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^scrap-url/', views.scrap,name = "scrap-url" ),
+    url(r'^postnews', views.postnews,name = "postnews" ),
     url(r'^', views.home,name="home" ),
 ]

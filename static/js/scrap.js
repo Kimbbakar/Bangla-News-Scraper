@@ -1,24 +1,64 @@
+var DATA = {};
+var EMAIL = prompt("Please enter your email id");
+var url,portal
 $("#url_submit").on('submit',function(e){
 	e.preventDefault();    
+
+    portal = $("#portal").val();
+    url = $("#url").val();
 
 	$.ajax({
 		url: $("#info").attr("href")  ,
 		type: "POST",
 		data:{
             "csrfmiddlewaretoken": $('#info').attr("token-id") ,
-            "portal": $("#portal").val(),
-            "url": $("#url").val()
+            "portal": portal,
+            "url": url
 		},
 
 		dataType: 'json',
 
 		success: function (data) { 
  			$("#news").empty();
- 			$("#review").empty();
  			$("#news").append(data.message);
- 			$("#review").append(" <br><br>  <input id ='ok'      type='submit' class='btn btn-success'  value='Ok' >	<input id ='notok'   type='submit' class='btn btn-danger'  value='Not Ok' > <br>	" );
+ 			$("#review").show() ;
+ 			DATA = data;
 		}		
 
 	});
 
+} );
+
+$("#ok").on('click',function(){
+	$.ajax({
+		url: "postnews"  ,
+		type: "POST",
+		data:{
+            "csrfmiddlewaretoken": $('#info').attr("token-id") ,
+            "headline": DATA['headline'] ,
+            "body": 	DATA['body'] ,
+            "image": 	DATA['image'] , 
+            "url": 		url , 
+            "portal": 	portal , 
+            "email":    EMAIL
+		},
+
+		dataType: 'json',
+
+		success: function (data) { 
+ 			$("#news").empty();
+ 			$("#review").hide() ;
+ 			$("#url").empty(); 
+ 			$("#news").append("<br><br> <h2> "+ data.message + "</h2> " ); 			
+
+		}		
+
+	});	
+
+} );
+
+$("#notok").on('click',function(){
+	$("#news").empty();
+	$("#review").hide() ;
+	$("#url").empty(); 
 } );
