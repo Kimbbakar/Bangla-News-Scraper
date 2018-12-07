@@ -1,12 +1,16 @@
-import os,sys
 from django.shortcuts import render
-from .models import news
 from django.http import HttpResponse , JsonResponse
+from django.utils import timezone
+from .models import news
+
+import datetime
+
+import os,sys
 SCRIPT_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPT_DIR = os.path.join(SCRIPT_DIR, 'scripts'); 
 sys.path.append(SCRIPT_DIR)
- 
 import prothom_alo,kaler_kantho
+ 
 
 
 def home(request):
@@ -23,10 +27,12 @@ def scrap(request):
 
 	return JsonResponse(data)
 
+
 def postnews(request): 
 	data = {}
 
 	if news.objects.filter(url =request.POST['url'] ).exists()==False:
+		print (request.POST['email'])
 		new_news = news(
 			url 		= request.POST['url'],
 			portal_name = request.POST['portal'],
@@ -41,5 +47,18 @@ def postnews(request):
 
 	else:
 		data ['message'] = "This news already in our database. We appreciate your contribution!"
+
+	return JsonResponse(data)
+
+
+
+def contribution(request):
+	data = {}
+	print (request.POST['email'] )
+	today = datetime.date.today()
+
+
+	data[ "contribution1" ] = news.objects.filter(email=request.POST['email']).count()
+	data[ "contribution2" ] = news.objects.filter(email=request.POST['email'],date__year = today.year,date__month=today.month,date__day=today.day ).count()
 
 	return JsonResponse(data)

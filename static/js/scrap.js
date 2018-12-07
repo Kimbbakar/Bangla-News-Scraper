@@ -1,6 +1,36 @@
 var DATA = {};
 var EMAIL = prompt("Please enter your email id");
-var url,portal
+var url,portal;
+var contribution1 = 0;
+var contribution2 = 0;
+// Contribution 
+
+$.ajax({
+	url: "/contribution"  ,
+	type: "POST",
+	data:{
+        "csrfmiddlewaretoken": $('#info').attr("token-id") ,
+        "email": EMAIL
+	},
+
+	dataType: 'json',
+
+	success: function (data) { 
+		contribution1 = data [ "contribution1" ];
+		contribution2 = data [ "contribution2" ];
+		update_contribution();
+		
+	}		
+
+});
+
+
+function update_contribution(){
+	$("#contribution1").text(String(contribution1));
+	$("#contribution2").text(String(contribution2));
+}
+
+
 $("#url_submit").on('submit',function(e){
 	e.preventDefault();    
 
@@ -56,7 +86,10 @@ $("#ok").on('click',function(){
  			$("#news").empty();
  			$("#review").hide() ;
  			$("#url").empty(); 
- 			$("#news").append("<br><br> <h2> "+ data.message + "</h2> " ); 			
+ 			$("#news").append("<br><br> <h2> "+ data.message + "</h2> " ); 
+ 			contribution1++;			
+ 			contribution2++;
+ 			update_contribution();
 
 		}		
 

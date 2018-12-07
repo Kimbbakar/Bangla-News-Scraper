@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^scrap-url/', views.scrap,name = "scrap-url" ),
     url(r'^postnews', views.postnews,name = "postnews" ),
+    url(r'^contribution', views.contribution,name = "contribution" ),
     url(r'^', views.home,name="home" ),
 ]
