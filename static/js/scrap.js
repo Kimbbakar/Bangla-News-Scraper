@@ -7,6 +7,13 @@ $("#url_submit").on('submit',function(e){
     portal = $("#portal").val();
     url = $("#url").val();
 
+    if (portal == "pa"){
+		var to = url.lastIndexOf('/');
+		to = to == -1 ? url.length : to + 1;
+		url = url.substring(0, to);
+    }
+
+
 	$.ajax({
 		url: $("#info").attr("href")  ,
 		type: "POST",
