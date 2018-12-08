@@ -32,7 +32,6 @@ def postnews(request):
 	data = {}
 
 	if news.objects.filter(url =request.POST['url'] ).exists()==False:
-		print (request.POST['email'])
 		new_news = news(
 			url 		= request.POST['url'],
 			portal_name = request.POST['portal'],
@@ -54,9 +53,7 @@ def postnews(request):
 
 def contribution(request):
 	data = {}
-	print (request.POST['email'] )
 	today = datetime.date.today()
-
 
 	data[ "contribution1" ] = news.objects.filter(email=request.POST['email']).count()
 	data[ "contribution2" ] = news.objects.filter(email=request.POST['email'],date__year = today.year,date__month=today.month,date__day=today.day ).count()
