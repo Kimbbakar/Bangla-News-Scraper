@@ -26,7 +26,7 @@ function prePorcess(){
 
 	});	
 } 
- 
+
 
 
 function emailInput(){
@@ -35,16 +35,12 @@ function emailInput(){
 }
 
 
-
-
-
-
-
 function update_contribution(){
 	$("#contribution1").text(String(contribution1));
 	$("#contribution2").text(String(contribution2));
 }
-
+ 
+ 
 
 $("#url_submit").on('submit',function(e){
 	e.preventDefault();    
@@ -102,10 +98,12 @@ $("#ok").on('click',function(){
  			$("#review").hide() ;
  			$("#url").empty(); 
  			$("#news").append("<br><br> <h2> "+ data.message + "</h2> " ); 
- 			contribution1++;			
- 			contribution2++;
- 			update_contribution();
 
+ 			if (data.success==true ){
+	 			contribution1++;			
+	 			contribution2++;
+	 			update_contribution(); 				
+ 			}
 		}		
 
 	});	

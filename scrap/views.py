@@ -43,9 +43,11 @@ def postnews(request):
 		new_news.save()
 
 		data ['message'] = "Thanks for your contribution!"
+		data ['success'] = True
 
 	else:
 		data ['message'] = "This news already in our database. We appreciate your contribution!"
+		data ['success'] = False
 
 	return JsonResponse(data)
 
