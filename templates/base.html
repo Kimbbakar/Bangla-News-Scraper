@@ -14,6 +14,9 @@
   </head>
   <body>
   {% block body %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href=#>Banlga News Scraper</a>
@@ -50,19 +53,18 @@
         {% block breadcrumb %}
         {% endblock %}
       </ol>
-      {% block content %}
+      {% block content %}    
+        {% block script %}
+
+        {% endblock %}
       {% endblock %}
     </div>
     {% endblock body %}
 
-    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 
-    {% block script %}
 
-    {% endblock %}
+
 
 
 

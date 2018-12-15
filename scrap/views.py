@@ -38,7 +38,7 @@ def postnews(request):
 			headline 	= request.POST['headline'], 
 			body	 	= request.POST['body'],
 			img	 		= request.POST['image'],
-			email	 	= request.POST['email']
+			email	 	= request.session['email']
 			)
 		new_news.save()
 
@@ -54,8 +54,12 @@ def postnews(request):
 def contribution(request):
 	data = {}
 	today = datetime.date.today()
+	if 'email' not in request.session:
+		request.session['email'] = request.POST['email']
 
-	data[ "contribution1" ] = news.objects.filter(email=request.POST['email']).count()
-	data[ "contribution2" ] = news.objects.filter(email=request.POST['email'],date__year = today.year,date__month=today.month,date__day=today.day ).count()
+
+	data[ "contribution1" ] = news.objects.filter(email=request.session['email']).count()
+	data[ "contribution2" ] = news.objects.filter(email=request.session['email'],date__year = today.year,date__month=today.month,date__day=today.day ).count()
+	data[ 'email' ]  = request.session['email']
 
 	return JsonResponse(data)

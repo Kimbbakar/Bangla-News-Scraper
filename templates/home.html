@@ -2,8 +2,26 @@
 {% load static %}
 
 {% block content %}
+<div id ='info' token-id = {{ csrf_token }} href = {% url "scrap-url" %} ></div> 
+{% block script %}
+    <script src="{% static 'js/scrap.js' %}"></script>
+{% endblock %}
+ 
+{% if 'email' not in request.session %}
+	
+	<script type="text/javascript">
+	   emailInput() ;
+	</script> 
+{% else %}
+	<script type="text/javascript">
+	   prePorcess() ;
+	</script> 
+<p class = "text-center"> Your Email: {{request.session.email}}   </p>
+<br>
+{% endif %}
 
-<div id ='info' token-id = {{ csrf_token }} href = {% url "scrap-url" %} ></div>
+
+
  
 <div class = "row">
 	<div class = "col-md-8">
@@ -129,6 +147,3 @@
 
 {% endblock %}
 
-{% block script %}
-    <script src="{% static 'js/scrap.js' %}"></script>
-{% endblock %}

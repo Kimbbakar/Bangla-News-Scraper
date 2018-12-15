@@ -1,28 +1,43 @@
 var DATA = {};
-var EMAIL = prompt("Please enter your email id");
+var EMAIL = "Unknown";
 var url,portal;
 var contribution1 = 0;
 var contribution2 = 0;
 // Contribution 
 
-$.ajax({
-	url: "/contribution"  ,
-	type: "POST",
-	data:{
-        "csrfmiddlewaretoken": $('#info').attr("token-id") ,
-        "email": EMAIL
-	},
+function prePorcess(){ 
+	$.ajax({
+		url: "/contribution"  ,
+		type: "POST",
+		data:{
+	        "csrfmiddlewaretoken": $('#info').attr("token-id") ,
+	        "email": EMAIL
+		},
 
-	dataType: 'json',
+		dataType: 'json',
 
-	success: function (data) { 
-		contribution1 = data [ "contribution1" ];
-		contribution2 = data [ "contribution2" ];
-		update_contribution();
-		
-	}		
+		success: function (data) { 
+			contribution1 = data [ "contribution1" ];
+			contribution2 = data [ "contribution2" ];
+			update_contribution();
+			EMAIL = data['email'];
+			
+		}		
 
-});
+	});	
+} 
+ 
+
+
+function emailInput(){
+	EMAIL = prompt("Please enter your email id"); 
+	prePorcess();
+}
+
+
+
+
+
 
 
 function update_contribution(){
