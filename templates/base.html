@@ -14,9 +14,7 @@
   </head>
   <body>
   {% block body %}
-    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href=#>Banlga News Scraper</a>
@@ -52,11 +50,10 @@
       <ol class="breadcrumb my-4">
         {% block breadcrumb %}
         {% endblock %}
-      </ol>
-      {% block content %}    
-        {% block script %}
+      </ol>        
 
-        {% endblock %}
+      {% block content %}    
+
       {% endblock %}
     </div>
     {% endblock body %}
@@ -65,7 +62,24 @@
 
 
 
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
+      {% block script %}
+
+      {% endblock %}
+
+      {% if 'email' not in request.session %}
+        
+        <script type="text/javascript">
+           emailInput() ;
+        </script> 
+      {% else %}
+        <script type="text/javascript">
+           prePorcess() ;
+        </script> 
+      {% endif %}
 
 
   </body>
