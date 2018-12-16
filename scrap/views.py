@@ -29,6 +29,7 @@ def scrap(request):
 
 
 def postnews(request): 
+	request.session.set_expiry(300)
 	data = {}
 
 	if news.objects.filter(url =request.POST['url'] ).exists()==False:
@@ -54,6 +55,7 @@ def postnews(request):
 
 
 def contribution(request):
+	request.session.set_expiry(300)
 	data = {}
 	today = datetime.date.today()
 	if 'email' not in request.session:
